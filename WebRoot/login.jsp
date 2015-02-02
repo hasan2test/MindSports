@@ -10,8 +10,8 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
-  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
   <style>
     .header {
       text-align: center;
@@ -46,12 +46,12 @@
     <br>
     <br>
 
-    <form method="post" class="am-form">
-      <label for="email">邮箱:</label>
-      <input type="email" name="" id="email" value="">
+    <form method="post" class="am-form" action="/i/loginTo">
+      <label for="username">用户名:</label>
+      <input type="text" name="user.username" id="username" value="">
       <br>
       <label for="password">密码:</label>
-      <input type="password" name="" id="password" value="">
+      <input type="password" name="user.password" id="password" value="">
       <br>
       <label for="remember-me">
         <input id="remember-me" type="checkbox">

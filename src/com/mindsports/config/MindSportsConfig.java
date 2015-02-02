@@ -11,7 +11,8 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 import com.mindsports.controller.IndexController;
-import com.mindsports.controller.LoginController;
+import com.mindsports.controller.LoginInterceptor;
+import com.mindsports.controller.UserController;
 import com.mindsports.dao.User;
 
 public class MindSportsConfig extends JFinalConfig {
@@ -22,8 +23,23 @@ public class MindSportsConfig extends JFinalConfig {
 	}
 
 	public void configRoute(Routes me) {
-		me.add("/index", IndexController.class);
-		me.add("/login", LoginController.class);
+
+		me.add(new FrontRoutes()); // 端端路由
+		me.add(new AdminRoutes()); // 后端路由
+	}
+
+	public class AdminRoutes extends Routes {
+		public void config() {
+			// add("/admin", AdminController.class);
+			// add("/admin/user", UserController.class);
+		}
+	}
+
+	public class FrontRoutes extends Routes {
+		public void config() {
+			add("/", IndexController.class);
+			add("/i", UserController.class);
+		}
 	}
 
 	public void configPlugin(Plugins me) {
@@ -36,10 +52,12 @@ public class MindSportsConfig extends JFinalConfig {
 	}
 
 	public void configInterceptor(Interceptors me) {
+		me.add(new LoginInterceptor());
 	}
 
 	public void configHandler(Handlers me) {
 	}
+
 	public static void main(String[] args) {
 		JFinal.start("WebRoot", 80, "/", 5);
 	}
